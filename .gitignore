@@ -7,3 +7,4 @@ target
 
 src/test/resources/jddconfig.json
 *.log
+dependency-reduced-pom.xml
