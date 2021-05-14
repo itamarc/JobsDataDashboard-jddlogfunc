@@ -27,7 +27,9 @@ public class MongoDBLogger {
     private static MongoClient getMongoClient() {
         try {
             if (mongoClient == null) {
-                mongoClient = MongoClients.create("<<MongoDB URI>>");
+                String mongoDbUri = System.getenv("JDD_MONGODBURI");
+//                System.out.println(mongoDbUri);
+                mongoClient = MongoClients.create(mongoDbUri);
             }
         } catch (Exception e) {
             System.out.println("Connection establishment failed");

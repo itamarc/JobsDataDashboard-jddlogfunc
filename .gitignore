@@ -5,3 +5,5 @@
 .project
 target
 
+src/test/resources/jddconfig.json
+*.log
