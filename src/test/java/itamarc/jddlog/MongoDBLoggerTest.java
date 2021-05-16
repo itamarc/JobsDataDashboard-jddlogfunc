@@ -46,6 +46,19 @@ public class MongoDBLoggerTest {
         assertTrue(true);
     }
 
+    @Test
+    public void mongoDBLoggerBrokenbodyTest() {
+        readConfigToEnvironment();
+        MongoDBLogger logger = new MongoDBLogger();
+        // 2021-05-06T22:07:00.000+00:00
+        String date = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX").format(new Date());
+        String messageBody = "\"time\": {\"$date\": \"" + date + "\"}\n" // Body with missing "{"
+                + "    \"origin\": \"MongoDBLoggerTest\"\n" + "    \"message\": \"Run test\"\n"
+                + "    \"level\": \"INFO\"\n" + "}";
+        logger.saveLogMessage(messageBody);
+        assertTrue(true);
+    }
+
     // Ugly hack code from StackOverflow to be used only for testing purposes
     @SuppressWarnings("unchecked")
     protected void setEnv(Map<String, String> newenv) throws Exception {
